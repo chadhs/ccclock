@@ -1,8 +1,8 @@
 (ns ccclock.core
-  (:require [reagent.core :as reagent]
-            [re-frame.core :as re-frame]
+  (:require [reagent.core   :as reagent]
+            [re-frame.core  :as re-frame]
             [ccclock.events :as events]
-            [ccclock.views :as views]
+            [ccclock.views  :as views]
             [ccclock.config :as config]))
 
 
