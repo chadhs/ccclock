@@ -17,12 +17,13 @@
  ::weather
  (fn
    [db _]
-   (let [openweathermap-appid (get config/secrets :openweathermap-appid)]
+   (let [appid (get config/secrets :openweathermap-appid)
+         zip   (str (get config/secrets :postal-code) "," (get config/secrets :country-code))]
      (GET
       "https://api.openweathermap.org/data/2.5/weather"
-      {:params {"zip" "53149,us"
+      {:params {"zip" zip
                 "units" "imperial"
-                "appid" openweathermap-appid}
+                "appid" appid}
        :handler       #(re-frame/dispatch [::process-weather %1])
        :error-handler #(re-frame/dispatch [::bad-response %1])
        :response-format :json
