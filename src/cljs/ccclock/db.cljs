@@ -1,4 +1,7 @@
 (ns ccclock.db)
 
+
 (def default-db
-  {:name "re-frame"})
+  {:time     (js/Date.)
+   :weather  {}
+   :forecast {}})
