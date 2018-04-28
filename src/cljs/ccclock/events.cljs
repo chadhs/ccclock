@@ -1,8 +1,8 @@
 (ns ccclock.events
-  (:require [re-frame.core :as re-frame]
-            [ccclock.db :as db]
-            [ccclock.config :as config]
-            [ajax.core :refer [GET]]))
+  (:require [re-frame.core  :as    re-frame]
+            [ccclock.db     :as    db]
+            [ccclock.config :as    config]
+            [ajax.core      :refer [GET]]))
 
 
 ;; event dispatch
@@ -21,14 +21,13 @@
          zip   (str (get config/secrets :postal-code) "," (get config/secrets :country-code))]
      (GET
       "https://api.openweathermap.org/data/2.5/weather"
-      {:params {"zip" zip
-                "units" "imperial"
-                "appid" appid}
-       :handler       #(re-frame/dispatch [::process-weather %1])
-       :error-handler #(re-frame/dispatch [::bad-response %1])
+      {:params          {"zip"   zip
+                         "units" "imperial"
+                         "appid" appid}
+       :handler         #(re-frame/dispatch [::process-weather %1])
+       :error-handler   #(re-frame/dispatch [::bad-response %1])
        :response-format :json
-       :keywords? true
-       }))))
+       :keywords?       true}))))
 (defonce do-weather (js/setInterval (re-frame/dispatch [::weather]) 3600000))
 
 
