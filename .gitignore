@@ -1,5 +1,7 @@
+.nrepl-port
 /*.log
 /target
 /*-init.clj
 /resources/public/js/compiled
+/resources/public/css
 out
