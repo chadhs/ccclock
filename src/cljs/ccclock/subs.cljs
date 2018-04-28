@@ -6,3 +6,9 @@
  ::time
  (fn [db _]
    (:time db)))
+
+
+(re-frame/reg-sub
+ ::weather
+ (fn [db _]
+   (:weather db)))

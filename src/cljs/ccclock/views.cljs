@@ -8,10 +8,21 @@
   (let [time-raw      @(re-frame/subscribe [::subs/time])
         time-segments (clojure.string/split (.toTimeString time-raw) ":")
         clock-time    (str (first time-segments) ":" (second time-segments))]
-    [:div.example-clock
-     clock-time]))
+    clock-time))
+
+
+(defn display-weather
+  []
+  (let [weather @(re-frame/subscribe [::subs/weather])]
+    (if (not (empty? weather))
+      (.toFixed (get-in weather [:main :temp]) 0)
+      "NA")))
 
 
 (defn main-panel []
-  [:div.time-display
-   [display-time]])
+  [:div
+   [:div.time-display
+    (display-time)]
+   [:div.temp-display
+    [:div.temp
+     (display-weather)]]])
