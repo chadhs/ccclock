@@ -14,7 +14,7 @@
 
 
 (re-frame/reg-event-db
- ::weather
+ ::fetch-weather
  (fn
    [db _]
    (let [appid (get config/secrets :openweathermap-appid)
@@ -24,11 +24,27 @@
       {:params          {"zip"   zip
                          "units" "imperial"
                          "appid" appid}
-       :handler         #(re-frame/dispatch [::process-weather %1])
-       :error-handler   #(re-frame/dispatch [::bad-response %1])
+       :handler         #(re-frame/dispatch [::update-weather %1])
        :response-format :json
        :keywords?       true}))))
-(defonce do-weather (js/setInterval (re-frame/dispatch [::weather]) 3600000))
+(defonce do-weather (js/setInterval (re-frame/dispatch [::fetch-weather]) 900000))
+
+
+(re-frame/reg-event-db
+ ::fetch-forecast
+ (fn
+   [db _]
+   (let [appid (get config/secrets :openweathermap-appid)
+         zip   (str (get config/secrets :postal-code) "," (get config/secrets :country-code))]
+     (GET
+      "https://api.openweathermap.org/data/2.5/forecast"
+      {:params          {"zip"   zip
+                         "units" "imperial"
+                         "appid" appid}
+       :handler         #(re-frame/dispatch [::update-forecast %1])
+       :response-format :json
+       :keywords?       true}))))
+(defonce do-forecast (js/setInterval (re-frame/dispatch [::fetch-forecast]) 900000))
 
 
 ;; event handling
@@ -45,7 +61,7 @@
 
 
 (re-frame/reg-event-db
- ::process-weather
+ ::update-weather
  (fn
    [db [_ response]]
    (-> db
@@ -53,8 +69,8 @@
 
 
 (re-frame/reg-event-db
- ::bad-response
+ ::update-forecast
  (fn
    [db [_ response]]
    (-> db
-       (assoc :weather {:error "baz"}))))
+       (assoc :forecast response))))
