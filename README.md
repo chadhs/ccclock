@@ -6,6 +6,14 @@ ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended 
 
 ## Development Mode
 
+### Set Environment Variables & Secrets
+
+Copy the example file, and update the values; this file is ignored by git for safety.
+
+```
+cp src/cljs/ccclock/environ.cljs.example src/cljs/ccclock/environ.cljs
+```
+
 ### Start Cider from Emacs:
 
 Put this in your Emacs config file:
