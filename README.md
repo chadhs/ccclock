@@ -4,6 +4,8 @@ ccclock — cord cutters clock — is a clock for "cord cutters" who miss the al
 
 ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended to run locally on a raspberry pi with attached lcd; but can run in any browser anywhere.
 
+![ccclock demo](ccclock-demo.png)
+
 ## Development Mode
 
 ### Set Environment Variables & Secrets
