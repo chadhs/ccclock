@@ -8,7 +8,10 @@
   []
   (let [time-raw      @(re-frame/subscribe [::subs/time])
         time-segments (clojure.string/split (.toTimeString time-raw) ":")
-        clock-time    (str (first time-segments) ":" (second time-segments))]
+        hour->int     (js/parseInt (first time-segments))
+        hour          (if (> hour->int 12) (- hour->int 12) hour->int)
+        minutes       (second time-segments)
+        clock-time    (str hour ":" minutes)]
     clock-time))
 
 
@@ -24,7 +27,6 @@
          :cond-current cond-current}))))
 
 
-;;; will need to fetch icons for conds to display real weather icons
 (defn format-forecast-data
   "provides a map of forecast data for the ui"
   []
