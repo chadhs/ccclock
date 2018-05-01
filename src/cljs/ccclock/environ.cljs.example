@@ -1,0 +1,7 @@
+(ns ccclock.environ)
+
+
+(def secrets
+  {:openweathermap-appid "00000000000000000000000000000000"
+   :postal-code          "55555"
+   :country-code         "us"})

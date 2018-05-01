@@ -6,6 +6,14 @@ ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended 
 
 ## Development Mode
 
+### Set Environment Variables & Secrets
+
+Copy the example file, and update the values; this file is ignored by git for safety.
+
+```
+cp src/cljs/ccclock/environ.cljs.example src/cljs/ccclock/environ.cljs
+```
+
 ### Start Cider from Emacs:
 
 Put this in your Emacs config file:
@@ -50,6 +58,5 @@ Wait a bit, then browse to [http://localhost:3449](http://localhost:3449).
 To compile clojurescript to javascript:
 
 ```
-lein clean
-lein cljsbuild once min
+lein do clean, cljsbuild once, garden once
 ```
