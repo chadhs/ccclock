@@ -1,4 +1,4 @@
-(defproject ccclock "0.5.0-SNAPSHOT"
+(defproject ccclock "0.5.1-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.908"]
                  [reagent "0.7.0"]
