@@ -21,10 +21,14 @@
   (let [weather @(re-frame/subscribe [::subs/weather])]
     (if (empty? weather)
       "NA"
-      (let [temp-current (.toFixed (get-in weather [:main :temp]) 0)
-            cond-current (get (first (get weather :weather)) :id)]
-        {:temp-current temp-current
-         :cond-current cond-current}))))
+      (let [temp-current     (.toFixed (get-in weather [:main :temp]) 0)
+            temp-current-min (get-in weather [:main :temp_min])
+            temp-current-max (get-in weather [:main :temp_max])
+            cond-current     (get (first (get weather :weather)) :id)]
+        {:temp-current     temp-current
+         :temp-current-min temp-current-min
+         :temp-current-max temp-current-max
+         :cond-current     cond-current}))))
 
 
 (defn format-forecast-data
@@ -33,12 +37,17 @@
   (let [forecast       @(re-frame/subscribe [::subs/forecast])]
     (if (empty? forecast)
       "NA"
-      (let [forecast-today (take 3 (get forecast :list))
-            temp-high      (.toFixed (apply max (map #(get-in % [:main :temp_max]) forecast-today)) 0)
-            temp-low       (.toFixed (apply min (map #(get-in % [:main :temp_min]) forecast-today)) 0)
-            conds-today    (map #(get (first (% :weather)) :id) forecast-today)
-            cond-3h        (first conds-today)
-            cond-6h        (second conds-today)]
+      (let [current-weather (format-weather-data)
+            current-high    (vector (get current-weather :temp-current-max))
+            current-low     (vector (get current-weather :temp-current-min))
+            forecast-today  (take 3 (get forecast :list))
+            forecast-high   (map #(get-in % [:main :temp_max]) forecast-today)
+            forecast-low    (map #(get-in % [:main :temp_min]) forecast-today)
+            temp-high       (.toFixed (apply max (apply merge current-high forecast-high)) 0)
+            temp-low        (.toFixed (apply min (apply merge current-low forecast-low)) 0)
+            conds-today     (map #(get (first (% :weather)) :id) forecast-today)
+            cond-3h         (first conds-today)
+            cond-6h         (second conds-today)]
         {:temp-high temp-high
          :temp-low  temp-low
          :cond-3h   cond-3h
