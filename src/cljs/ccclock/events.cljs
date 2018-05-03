@@ -14,8 +14,9 @@
 
 (defn dispatch-event-update-weather []
   (let [apikey      (get config/secrets :darksky-apikey)
-        coords      (get config/secrets :lat-lon-coords)
-        request-url (str "https://api.darksky.net/forecast/" apikey "/" coords)]
+        latitude    (get config/secrets :latitude)
+        longitude   (get config/secrets :longitude)
+        request-url (str "https://api.darksky.net/forecast/" apikey "/" latitude "," longitude)]
     (GET
      request-url
      {:handler         #(re-frame/dispatch [::update-weather %1])

@@ -3,4 +3,5 @@
 
 (def secrets
   {:darksky-apikey "00000000000000000000000000000000"
-   :lat-lon-coords "42.3601,-71.0589"})
+   :latitude       "42.3601"}
+   :longitude      "-71.0589"})
