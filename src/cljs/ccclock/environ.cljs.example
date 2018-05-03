@@ -2,6 +2,5 @@
 
 
 (def secrets
-  {:openweathermap-appid "00000000000000000000000000000000"
-   :postal-code          "55555"
-   :country-code         "us"})
+  {:darksky-apikey "00000000000000000000000000000000"
+   :lat-lon-coords "42.3601,-71.0589"})

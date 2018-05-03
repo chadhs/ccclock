@@ -12,9 +12,3 @@
  ::weather
  (fn [db _]
    (:weather db)))
-
-
-(re-frame/reg-sub
- ::forecast
- (fn [db _]
-   (:forecast db)))

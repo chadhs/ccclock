@@ -3,5 +3,4 @@
 
 (def default-db
   {:time     (js/Date.)
-   :weather  {}
-   :forecast {}})
+   :weather  {}})
