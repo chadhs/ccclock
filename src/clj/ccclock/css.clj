@@ -13,12 +13,12 @@
     :color "#6A5ACD"}]
 
   [:#app
-   {:margin "3vw"
-    :padding "3vw"}]
+   {:margin "0.5vw"
+    :padding "0.5vw"}]
 
   [:.time-display
-   {:font-size "20vw"
-    :width "66%"
+   {:font-size "23vw"
+    :width "70%"
     :float "right"}]
 
   [:.temp-display
@@ -26,15 +26,15 @@
     :float "left"}]
 
   [:.temp-display :.temp
-   {:font-size "12vw"}]
+   {:font-size "16vw"}]
 
   [:.temp-display :.hi-low
-   {:font-size "6vw"}]
+   {:font-size "7vw"}]
 
   [:.cond-display
-   {:font-size "16vw"
+   {:font-size "20vw"
     :text-align "center"
     :letter-spacing "1vw"
-    :padding-top "6vw"
+    :padding-top "4vw"
     :clear "both"
     :width "100%"}])
