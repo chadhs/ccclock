@@ -4,53 +4,37 @@
 
 (defstyles screen
   [:*
-   {
-    :margin "0"
-    :padding "0"
-    }]
+   {:margin "0"
+    :padding "0"}]
 
   [:body
-   {
-    :font-family "courier, monospace"
+   {:font-family "courier, monospace"
     :background-color "#000"
-    :color "#6A5ACD"
-    }]
+    :color "#6A5ACD"}]
 
   [:#app
-   {
-    :margin "3vw"
-    :padding "3vw"
-    }]
+   {:margin "3vw"
+    :padding "3vw"}]
 
   [:.time-display
-   {
-    :font-size "20vw"
+   {:font-size "20vw"
     :width "66%"
-    :float "right"
-    }]
+    :float "right"}]
 
   [:.temp-display
-   {
-    :width "20%"
-    :float "left"
-    }]
+   {:width "20%"
+    :float "left"}]
 
   [:.temp-display :.temp
-   {
-    :font-size "12vw"
-    }]
+   {:font-size "12vw"}]
 
   [:.temp-display :.hi-low
-   {
-    :font-size "6vw"
-    }]
+   {:font-size "6vw"}]
 
   [:.cond-display
-   {
-    :font-size "16vw"
+   {:font-size "16vw"
     :text-align "center"
     :letter-spacing "1vw"
     :padding-top "6vw"
     :clear "both"
-    :width "100%"
-    }])
+    :width "100%"}])
