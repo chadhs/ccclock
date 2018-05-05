@@ -28,7 +28,7 @@
     :padding-top "0vw"}]
 
   [:.temp-display :.temp
-   {:font-size "16vw"
+   {:font-size "16.5vw"
     :padding-bottom "1vw"}]
 
   [:.temp-display :.hi-low
