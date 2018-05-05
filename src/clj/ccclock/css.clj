@@ -14,7 +14,7 @@
 
   [:#app
    {:margin "0.5vw"
-    :margin-top "2vw"
+    :margin-top "4vw"
     :padding "0.5vw"}]
 
   [:.time-display
@@ -25,7 +25,7 @@
   [:.temp-display
    {:width "20%"
     :float "left"
-    :padding-top "2vw"}]
+    :padding-top "0vw"}]
 
   [:.temp-display :.temp
    {:font-size "16vw"
@@ -38,6 +38,6 @@
    {:font-size "20vw"
     :text-align "center"
     :letter-spacing "1vw"
-    :padding-top "2vw"
+    :padding-top "6vw"
     :clear "both"
     :width "100%"}])

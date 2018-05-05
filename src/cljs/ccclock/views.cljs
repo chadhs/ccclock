@@ -9,7 +9,8 @@
   (let [time-raw      @(re-frame/subscribe [::subs/time])
         time-segments (clojure.string/split (.toTimeString time-raw) ":")
         hour->int     (js/parseInt (first time-segments))
-        hour          (if (> hour->int 12) (- hour->int 12) hour->int)
+        hour-12h      (if (>= hour->int 13) (- hour->int 12) hour->int)
+        hour          (if (<= hour-12h 9) (str "0" hour-12h) hour-12h)
         minutes       (second time-segments)
         clock-time    (str hour ":" minutes)]
     clock-time))
