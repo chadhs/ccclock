@@ -13,26 +13,29 @@
     :color "#6A5ACD"}]
 
   [:#app
-   {:margin "3vw"
-    :padding "3vw"}]
+   {:margin "0.5vw"
+    :margin-top "4vw"
+    :padding "0.5vw"}]
 
   [:.time-display
-   {:font-size "20vw"
-    :width "66%"
+   {:font-size "23vw"
+    :width "70%"
     :float "right"}]
 
   [:.temp-display
    {:width "20%"
-    :float "left"}]
+    :float "left"
+    :padding-top "0vw"}]
 
   [:.temp-display :.temp
-   {:font-size "12vw"}]
+   {:font-size "16.5vw"
+    :padding-bottom "1vw"}]
 
   [:.temp-display :.hi-low
-   {:font-size "6vw"}]
+   {:font-size "7vw"}]
 
   [:.cond-display
-   {:font-size "16vw"
+   {:font-size "19vw"
     :text-align "center"
     :letter-spacing "1vw"
     :padding-top "6vw"
