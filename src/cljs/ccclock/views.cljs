@@ -6,9 +6,13 @@
 (defn main-panel
   "ccclock main display ui"
   []
-  (let [time-data     @(re-frame/subscribe [::subs/time])
+  (let [time-data          @(re-frame/subscribe [::subs/time])
         weather-data  @(re-frame/subscribe [::subs/weather])
         forecast-data @(re-frame/subscribe [::subs/forecast])
+        time-h1       (get time-data :time-h1)
+        time-h2       (get time-data :time-h2)
+        time-min      (get time-data :time-min)
+        time-h1-class (get time-data :time-h1-class)
         temp-current  (get weather-data  :temp-current)
         temp-high     (get forecast-data :temp-high)
         temp-low      (get forecast-data :temp-low)
@@ -17,7 +21,7 @@
         cond-6h       (get forecast-data :cond-6h)]
     [:div
      [:div.time-display
-      time-data]
+      [:text {:class time-h1-class} time-h1] [:text.time-rest time-h2 ":" time-min]]
      [:div.temp-display
       [:div.temp
        temp-current "°"]
