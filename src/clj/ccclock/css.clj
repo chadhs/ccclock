@@ -1,9 +1,6 @@
 (ns ccclock.css
   (:require [garden.def :refer [defstyles]]))
 
-(def colors
-  {:default-text       "#6A5ACD"
-   :default-background "#000"})
 
 (defstyles screen
   [:*
@@ -12,8 +9,8 @@
 
   [:body
    {:font-family "courier, monospace"
-    :background-color (get colors :default-background)
-    :color (get colors :default-text)}]
+    :background-color "#000"
+    :color "#6A5ACD"}]
 
   [:#app
    {:margin "0.5vw"
@@ -24,12 +21,6 @@
    {:font-size "23vw"
     :width "70%"
     :float "right"}]
-
-  [:.time-zero
-   {:color (get colors :default-background)}]
-
-  [:.time-one
-   {:color (get colors :default-text)}]
 
   [:.temp-display
    {:width "20%"
