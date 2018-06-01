@@ -14,9 +14,9 @@
          time-h2       (second hour)
          minutes       (second time-segments)
          time-h1-class (if (= "0" time-h1) "time-zero" "time-one")]
-     {:time-h1  time-h1
-      :time-h2  time-h2
-      :time-min minutes
+     {:time-h1       time-h1
+      :time-h2       time-h2
+      :time-min      minutes
       :time-h1-class time-h1-class})))
 
 
