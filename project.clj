@@ -27,7 +27,6 @@
   :source-paths ["src/clj"]
 
   :figwheel {:css-dirs ["resources/public/css"]
-             ;; TODO setup user.clj
              ;; start and stop ring server - see dev/user.clj
              :init     user/start-server
              :destroy  user/stop-server}
@@ -50,8 +49,6 @@
     :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                       "target"
                                       "resources/public/css"]
-    ;; TODO setup user.clj
-    ;; need to add dev source path to load dev/user.clj
     :source-paths  ["src/clj" "dev"]
     :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
 
