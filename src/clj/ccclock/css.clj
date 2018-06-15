@@ -1,9 +1,11 @@
 (ns ccclock.css
   (:require [garden.def :refer [defstyles]]))
 
+
 (def colors
   {:default-text       "#6A5ACD"
    :default-background "#000"})
+
 
 (defstyles screen
   [:*
