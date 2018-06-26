@@ -12,15 +12,15 @@ ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended 
 
 Copy the example file, and update the values; this file is ignored by git for safety.
 
-```
+```sh
 cp src/cljs/ccclock/environ.cljs.example src/cljs/ccclock/environ.cljs
 ```
 
-### Start Cider from Emacs:
+### Start Cider + Figwheel from Emacs
 
 Put this in your Emacs config file:
 
-```
+```emacs-lisp
 (setq cider-cljs-lein-repl
 	"(do (require 'figwheel-sidecar.repl-api)
          (figwheel-sidecar.repl-api/start-figwheel!)
@@ -29,26 +29,25 @@ Put this in your Emacs config file:
 
 Navigate to a clojurescript file and start a figwheel REPL with `cider-jack-in-clojurescript` or (`C-c M-J`)
 
-### Compile css:
+### Start Fighweel from Terminal:
 
-Compile css file once.
-
-```
-lein garden once
+```sh
+lein do clean, garden once, figwheel dev
 ```
 
-Automatically recompile css file on change.
+### Start Ring Backend from Terminal
 
+```sh
+lein ring server
 ```
+
+### Automatically Recompile CSS File on Changes
+
+```sh
 lein garden auto
 ```
 
-### Run application:
-
-```
-lein clean
-lein figwheel dev
-```
+### See Changes Live in Your Browser
 
 Figwheel will automatically push cljs changes to the browser.
 
@@ -57,8 +56,8 @@ Wait a bit, then browse to [http://localhost:3449](http://localhost:3449).
 ## Production Build
 
 
-To compile clojurescript to javascript:
+To compile clojurescript to javascript, compile css, and build jar file which serves the api-proxy and index.html:
 
-```
-lein package
+```sh
+lein with-profile prod uberjar
 ```

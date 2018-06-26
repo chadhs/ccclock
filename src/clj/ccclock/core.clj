@@ -1,8 +1,12 @@
 (ns ccclock.core
   (:require [compojure.core           :refer [defroutes GET]]
             [compojure.route          :as    route]
+            [ring.util.response       :as    response]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [ring.util.response       :as    response]))
+            [ring.middleware.reload   :refer [wrap-reload]]
+            [environ.core             :as    environ]
+            [ring.adapter.jetty       :refer [run-jetty]])
+  (:gen-class))
 
 
 (defroutes app-routes
@@ -10,13 +14,23 @@
   ;; of resources i.e. resources/public
   (route/resources "/" {:root "public"})
   ;; NOTE: this will deliver your index.html
-  (GET             "/"      [] (-> (response/resource-response "index.html" {:root "public"})
-                                   (response/content-type "text/html")))
-  (GET             "/weather" [] "call-weather-handler")
-  (route/not-found             "Page not found"))
+  (GET             "/"        [] (-> (response/resource-response "index.html" {:root "public"})
+                                     (response/content-type "text/html")))
+  (GET             "/weather" [] "placeholder weather data")
+  (route/not-found               "Page not found"))
 
 
-(def app (wrap-defaults app-routes site-defaults))
+(def dev-app
+  (-> #'app-routes
+      (wrap-defaults site-defaults)
+      wrap-reload))
 
 
-(def dev-app (wrap-defaults #'app-routes site-defaults))
+(def app
+  (-> app-routes
+      (wrap-defaults site-defaults)))
+
+
+(defn -main [& args]
+  (let [port (Integer/parseInt (or (environ/env :port) "3000"))]
+    (run-jetty app {:port port :join? false})))

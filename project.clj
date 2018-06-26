@@ -1,4 +1,4 @@
-(defproject ccclock "0.6.0-SNAPSHOT"
+(defproject ccclock "0.6.1-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.312"]
                  [reagent "0.7.0"]
@@ -20,16 +20,16 @@
 
   :min-lein-version "2.5.3"
 
-  ;; server side settings
-  :ring {:handler ccclock.core/app}
-  :uberjar-name "ccclock.jar"
+  :source-paths ["src/clj" "src/cljs"]
 
-  :source-paths ["src/clj"]
+  :clean-targets ^{:protect false} ["resources/public/js/compiled"
+                                    "resources/public/css"
+                                    "target"]
 
   :figwheel {:css-dirs ["resources/public/css"]
-             ;; start and stop ring server - see dev/user.clj
-             :init     user/start-server
-             :destroy  user/stop-server}
+             :ring-handler ccclock.core/dev-app}
+
+  :ring {:handler ccclock.core/app}
 
   :garden {:builds [{:id           "screen"
                      :source-paths ["src/clj"]
@@ -37,36 +37,32 @@
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
 
+  :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+
   :profiles
   {:dev
    {:dependencies  [[binaryage/devtools "0.9.10"]
                     [figwheel-sidecar "0.5.16"]
                     [com.cemerick/piggieback "0.2.2"]
-                    [day8.re-frame/re-frame-10x "0.3.3"]
-                    ;; for server library at dev time
-                    [ring-server "0.5.0"]]
-    :plugins       [[lein-figwheel "0.5.16"]]
-    :clean-targets ^{:protect false} ["resources/public/js/compiled"
-                                      "target"
-                                      "resources/public/css"]
-    :source-paths  ["src/clj" "dev"]
-    :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
+                    [day8.re-frame/re-frame-10x "0.3.3"]]
 
-   :prod { }}
+    :plugins       [[lein-figwheel "0.5.16"]]}
+
+   :prod {}}
 
   :cljsbuild
   {:builds
    [{:id           "dev"
      :source-paths ["src/cljs"]
-     :figwheel     {:on-jsload "ccclock.core/init"
-                    :open-urls ["http://localhost:3000/index.html"]}
+     :figwheel     {:on-jsload "ccclock.core/mount-root"}
      :compiler     {:main                 ccclock.core
                     :output-to            "resources/public/js/compiled/app.js"
                     :output-dir           "resources/public/js/compiled/out"
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true
+                    :preloads             [devtools.preload
+                                           day8.re-frame-10x.preload]
                     :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
-                    :preloads             [devtools.preload day8.re-frame-10x.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}}}
 
     {:id           "min"
@@ -77,7 +73,11 @@
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false}}]}
 
-  :aliases {"package" ["do" "clean"
-                       ["cljsbuild" "once" "min"]
-                       ["garden" "once"]
-                       ["ring" "uberjar"]]})
+  ;; server side settings
+  :main ccclock.core
+
+  :aot [ccclock.core]
+
+  :uberjar-name "ccclock.jar"
+
+  :prep-tasks ["clean" ["cljsbuild" "once" "min"]["garden" "once"] "compile"])
