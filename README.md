@@ -8,6 +8,8 @@ ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended 
 
 ## Development Mode
 
+**Note:** When doing full stack development, start the ring server first and start figwheel last (via emacs or terminal).
+
 ### Set Environment Variables & Secrets
 
 Copy the example file, and update the values; this file is ignored by git for safety.
