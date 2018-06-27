@@ -5,7 +5,8 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.reload   :refer [wrap-reload]]
             [environ.core             :as    environ]
-            [ring.adapter.jetty       :refer [run-jetty]])
+            [ring.adapter.jetty       :refer [run-jetty]]
+            [clj-http.client          :as    client])
   (:gen-class))
 
 
@@ -14,10 +15,18 @@
   ;; of resources i.e. resources/public
   (route/resources "/" {:root "public"})
   ;; NOTE: this will deliver your index.html
-  (GET             "/"        [] (-> (response/resource-response "index.html" {:root "public"})
-                                     (response/content-type "text/html")))
-  (GET             "/weather" [] "placeholder weather data")
-  (route/not-found               "Page not found"))
+  (GET "/"        [] (-> (response/resource-response "index.html" {:root "public"})
+                         (response/content-type "text/html")))
+  (GET "/weather" [] (let [weather-url    "https://api.darksky.net/forecast"
+                           weather-apikey (environ/env :weather-apikey)
+                           latitude       "42.871974"
+                           longitude      "-88.359167"
+                           result         (client/get
+                                           (str weather-url "/"
+                                                weather-apikey "/"
+                                                latitude "," longitude))]
+                       (get result :body)))
+  (route/not-found "Page not found"))
 
 
 (def dev-app

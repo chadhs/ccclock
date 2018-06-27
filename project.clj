@@ -10,7 +10,9 @@
                  [ring "1.6.3"]
                  [compojure "1.6.1"]
                  [environ "1.1.0"]
-                 [ring/ring-defaults "0.3.2"]]
+                 [ring/ring-defaults "0.3.2"]
+                 [clj-http "3.9.0"]
+                 [cheshire "5.8.0"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-garden "0.3.0"]
@@ -37,18 +39,20 @@
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
 
-  :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+  :repl-options  {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
   :profiles
-  {:dev
-   {:dependencies  [[binaryage/devtools "0.9.10"]
-                    [figwheel-sidecar "0.5.16"]
-                    [com.cemerick/piggieback "0.2.2"]
-                    [day8.re-frame/re-frame-10x "0.3.3"]]
-
-    :plugins       [[lein-figwheel "0.5.16"]]}
-
-   :prod {}}
+  {:dev           [:project/dev :profiles/dev]
+   :test          [:project/test :profiles/test]
+   :profiles/dev  {}
+   :profiles/test {}
+   :project/dev   {:dependencies [[binaryage/devtools "0.9.10"]
+                                  [day8.re-frame/re-frame-10x "0.3.3"]
+                                  [figwheel-sidecar "0.5.16"]
+                                  [cider/piggieback "0.3.6"]]
+                   :plugins       [[lein-figwheel "0.5.16"]]}
+   :project/test {}
+   :prod         {}}
 
   :cljsbuild
   {:builds
