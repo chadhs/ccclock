@@ -1,7 +1,0 @@
-(ns ccclock.environ)
-
-
-(def secrets
-  {:openweathermap-appid "00000000000000000000000000000000"
-   :latitude             "43.0389"
-   :longitude            "-87.9065"})

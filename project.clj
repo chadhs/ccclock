@@ -25,8 +25,7 @@
   :source-paths ["src/clj" "src/cljs"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled"
-                                    "resources/public/css"
-                                    "target"]
+                                    "resources/public/css"]
 
   :figwheel {:css-dirs ["resources/public/css"]
              :ring-handler ccclock.core/dev-app}

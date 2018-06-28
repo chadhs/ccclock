@@ -13,37 +13,14 @@
 
 
 (defn dispatch-event-update-weather []
-  (let [appid     (get config/secrets :openweathermap-appid)
-        latitude  (get config/secrets :latitude)
-        longitude (get config/secrets :longitude)]
+  (let [request-url "http://localhost:3000/weather"]
     (GET
-     "https://api.openweathermap.org/data/2.5/weather"
-     {:params          {"lat"   latitude
-                        "lon"   longitude
-                        "units" "imperial"
-                        "appid" appid}
-      :handler         #(re-frame/dispatch [::update-weather %1])
+     request-url
+     {:handler         #(re-frame/dispatch [::update-weather %1])
       :response-format :json
       :keywords?       true})))
 (dispatch-event-update-weather) ; run once on load to populate state db
 (defonce do-weather (js/setInterval dispatch-event-update-weather 300000))
-
-
-(defn dispatch-event-update-forecast []
-  (let [appid     (get config/secrets :openweathermap-appid)
-        latitude  (get config/secrets :latitude)
-        longitude (get config/secrets :longitude)]
-    (GET
-     "https://api.openweathermap.org/data/2.5/forecast"
-     {:params          {"lat"   latitude
-                        "lon"   longitude
-                        "units" "imperial"
-                        "appid" appid}
-      :handler         #(re-frame/dispatch [::update-forecast %1])
-      :response-format :json
-      :keywords?       true})))
-(dispatch-event-update-forecast) ; run once on load to populate state db
-(defonce do-forecast (js/setInterval dispatch-event-update-forecast 300000))
 
 
 ;; event handling
@@ -65,11 +42,3 @@
    [db [_ response]]
    (-> db
        (assoc :weather response))))
-
-
-(re-frame/reg-event-db
- ::update-forecast
- (fn
-   [db [_ response]]
-   (-> db
-       (assoc :forecast response))))
