@@ -12,10 +12,10 @@
         time-h2       (get time-data :time-h2)
         time-min      (get time-data :time-min)
         time-h1-class (get time-data :time-h1-class)
-        temp-current  (get weather-data  :temp-current)
+        temp-current  (get weather-data :temp-current)
         temp-high     (get weather-data :temp-high)
         temp-low      (get weather-data :temp-low)
-        cond-current  (get weather-data  :cond-current)
+        cond-current  (get weather-data :cond-current)
         cond-3hour    (get weather-data :cond-3hour)
         cond-6hour    (get weather-data :cond-6hour)]
     [:div
@@ -27,6 +27,6 @@
       [:div.hi-low
        temp-high"°" "/" temp-low "°"]]
      [:div.cond-display
-      [:i.wi {:class (str "wi-owm-" cond-current)}] " "
-      [:i.wi {:class (str "wi-owm-" cond-3hour)}] " "
-      [:i.wi {:class (str "wi-owm-" cond-6hour)}]]]))
+      [:i.wi {:class (str "wi-forecast-io-" cond-current)}] " "
+      [:i.wi {:class (str "wi-forecast-io-" cond-3hour)}] " "
+      [:i.wi {:class (str "wi-forecast-io-" cond-6hour)}]]]))

@@ -27,12 +27,13 @@
      (if (empty? weather)
        "NA"
        (let [temp-current (.toFixed (get-in weather [:currently :apparentTemperature]) 0)
-             temp-high    (.toFixed (get-in weather [:daily :apparentTemperatureHigh]) 0)
-             temp-low     (.toFixed (get-in weather [:daily :apparentTemperatureLow]) 0)
+             today-daily  (first (get-in weather [:daily :data]))
+             temp-high    (.toFixed (get today-daily :apparentTemperatureHigh) 0)
+             temp-low     (.toFixed (get today-daily :apparentTemperatureLow) 0)
              cond-current (get-in weather [:currently :icon])
-             forecast     (get weather :daily)
-             cond-3hour   (get (nth forecast 3) :icon)
-             cond-6hour   (get (nth forecast 6) :icon)]
+             today-hourly (get-in weather [:hourly :data])
+             cond-3hour   (get (nth today-hourly 3) :icon)
+             cond-6hour   (get (nth today-hourly 6) :icon)]
          {:temp-current temp-current
           :temp-high    temp-high
           :temp-low     temp-low
