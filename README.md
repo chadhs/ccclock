@@ -15,7 +15,7 @@ ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended 
 Copy the example file, and update the values; this file is ignored by git for safety.
 
 ```sh
-cp src/cljs/ccclock/environ.cljs.example src/cljs/ccclock/environ.cljs
+cp profiles-example.clj profiles.clj
 ```
 
 ### Start Cider + Figwheel from Emacs
@@ -62,4 +62,10 @@ To compile clojurescript to javascript, compile css, and build jar file which se
 
 ```sh
 lein with-profile prod uberjar
+```
+
+To run in production set the `WEATHER_APIKEY` environment variable and then run
+
+```sh
+java -jar target/ccclock.jar
 ```

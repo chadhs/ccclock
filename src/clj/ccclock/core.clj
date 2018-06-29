@@ -25,7 +25,11 @@
                                            (str weather-url "/"
                                                 weather-apikey "/"
                                                 latitude "," longitude))]
-                       (get result :body)))
+                       {:status 200
+                        :headers {"Access-Control-Allow-Origin" "*"
+                                  "Access-Control-Allow-Headers" "Content-Type"
+                                  "Content-Type" "application/json"}
+                        :body (get result :body)}))
   (route/not-found "Page not found"))
 
 
