@@ -19,12 +19,11 @@
                          (response/content-type "text/html")))
   (GET "/weather" [] (let [weather-url    "https://api.darksky.net/forecast"
                            weather-apikey (environ/env :weather-apikey)
-                           latitude       "42.871974"
-                           longitude      "-88.359167"
+                           lat-lon        (environ/env :lat-lon)
                            result         (client/get
                                            (str weather-url "/"
                                                 weather-apikey "/"
-                                                latitude "," longitude))]
+                                                lat-lon))]
                        {:status 200
                         :headers {"Access-Control-Allow-Origin" "*"
                                   "Access-Control-Allow-Headers" "Content-Type"
@@ -45,5 +44,5 @@
 
 
 (defn -main [& args]
-  (let [port (Integer/parseInt (or (environ/env :port) "3000"))]
+  (let [port (Integer/parseInt (or (environ/env :proxy-port) "8000"))]
     (run-jetty app {:port port :join? false})))

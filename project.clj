@@ -30,7 +30,8 @@
   :figwheel {:css-dirs ["resources/public/css"]
              :ring-handler ccclock.core/dev-app}
 
-  :ring {:handler ccclock.core/app}
+  :ring {:handler ccclock.core/app
+         :port 8000}
 
   :garden {:builds [{:id           "screen"
                      :source-paths ["src/clj"]

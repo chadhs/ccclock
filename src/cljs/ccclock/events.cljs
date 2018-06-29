@@ -13,7 +13,7 @@
 
 
 (defn dispatch-event-update-weather []
-  (let [request-url "http://localhost:3000/weather"]
+  (let [request-url "http://localhost:8000/weather"]
     (GET
      request-url
      {:handler         #(re-frame/dispatch [::update-weather %1])
