@@ -46,7 +46,7 @@
    {:font-size "7vw"}]
 
   [:.cond-display
-   {:font-size "17vw"
+   {:font-size "19vw"
     :text-align "center"
     :letter-spacing "1vw"
     :padding-top "6vw"
