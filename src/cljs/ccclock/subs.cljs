@@ -10,8 +10,8 @@
          hour->int     (js/parseInt (first time-segments))
          hour-12h      (if (>= hour->int 13) (- hour->int 12) hour->int)
          hour          (if (<= hour-12h 9) (str "0" hour-12h) hour-12h)
-         time-h1       (first hour)
-         time-h2       (second hour)
+         time-h1       (first (str hour))
+         time-h2       (second (str hour))
          minutes       (second time-segments)
          time-h1-class (if (= "0" time-h1) "time-zero" "time-one")]
      {:time-h1       time-h1
