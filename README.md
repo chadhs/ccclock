@@ -4,6 +4,8 @@ ccclock — cord cutters clock — is a clock for "cord cutters" who miss the al
 
 ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended to run locally on a raspberry pi with attached lcd; but can run in any browser anywhere.
 
+This current iteration as powered by darksky.net and requires a free account and api key.
+
 ![ccclock demo](ccclock-demo.png)
 
 ## Development Mode
@@ -12,7 +14,7 @@ ccclock is built with [re-frame](https://github.com/Day8/re-frame) and intended 
 
 ### Set Environment Variables & Secrets
 
-Copy the example file, and update the values; this file is ignored by git for safety.
+Copy the example file, and update the values.  A darksky.net free account and api key is required for the `weather-apikey` value.  This file is ignored by git for safety.
 
 ```sh
 cp profiles-example.clj profiles.clj
