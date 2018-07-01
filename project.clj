@@ -27,9 +27,6 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                     "resources/public/css"]
 
-  :figwheel {:css-dirs ["resources/public/css"]
-             :ring-handler ccclock.core/dev-app}
-
   :ring {:handler ccclock.core/app
          :port 8000}
 
@@ -42,6 +39,9 @@
   :repl-options  {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
   :profiles
+  ;; composite profiles are being used
+  ;; all lein configuration should be in :project/<profile> sections below
+  ;; DO NOT edit :profiles/<profile> below, to add profile config edit profiles.clj
   {:dev           [:project/dev :profiles/dev]
    :test          [:project/test :profiles/test]
    :profiles/dev  {}
@@ -50,7 +50,8 @@
                                   [day8.re-frame/re-frame-10x "0.3.3"]
                                   [figwheel-sidecar "0.5.16"]
                                   [cider/piggieback "0.3.6"]]
-                   :plugins       [[lein-figwheel "0.5.16"]]}
+                   :plugins       [[lein-figwheel "0.5.16"]]
+                   :figwheel      {:css-dirs ["resources/public/css"]}}
    :project/test {}
    :prod         {}}
 
