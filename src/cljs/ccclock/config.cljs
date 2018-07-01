@@ -1,10 +1,5 @@
-(ns ccclock.config
-  (:require [ccclock.environ :as environ]))
+(ns ccclock.config)
 
 
 (def debug?
   ^boolean goog.DEBUG)
-
-
-(def secrets
-  environ/secrets)

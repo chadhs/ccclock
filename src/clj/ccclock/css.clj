@@ -1,9 +1,11 @@
 (ns ccclock.css
   (:require [garden.def :refer [defstyles]]))
 
+
 (def colors
   {:default-text       "#6A5ACD"
    :default-background "#000"})
+
 
 (defstyles screen
   [:*
@@ -44,7 +46,7 @@
    {:font-size "7vw"}]
 
   [:.cond-display
-   {:font-size "19vw"
+   {:font-size "17vw"
     :text-align "center"
     :letter-spacing "1vw"
     :padding-top "6vw"

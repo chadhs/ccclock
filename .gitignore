@@ -1,4 +1,6 @@
 .nrepl-port
+.lein*
+.rebel_readline_history
 /*.log
 /target
 /*-init.clj
@@ -6,3 +8,4 @@
 /resources/public/css
 out
 environ.cljs
+profiles.clj
