@@ -57,7 +57,6 @@ Wait a bit, then browse to [http://localhost:3449](http://localhost:3449).
 
 ## Production Build
 
-
 To compile clojurescript to javascript, compile css, and build jar file which serves the api-proxy and index.html:
 
 ```sh
@@ -69,3 +68,12 @@ To run in production set the `WEATHER_APIKEY` environment variable and then run
 ```sh
 java -jar target/ccclock.jar
 ```
+
+## Notes
+
+To deploy to a raspberry pi, I recommend the following:
+
+- have rc.local launch your production jar
+- set to boot to desktop and launch chromium in kiosk mode launching http://localhost:8000/index.html
+
+Your browser may sit with a "cannot load page" or other such error for a couple minutes if it opens before the jvm launches your jar.
