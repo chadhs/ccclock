@@ -27,6 +27,6 @@
       [:div.hi-low
        temp-high"°" "/" temp-low "°"]]
      [:div.cond-display
-      [:i.wi {:class (str "wi-forecast-io-" cond-current)}] " "
+      [:i.wi.wi-fw {:class (str "wi-forecast-io-" cond-current)}] " "
       [:i.wi {:class (str "wi-forecast-io-" cond-3hour)}] " "
       [:i.wi {:class (str "wi-forecast-io-" cond-6hour)}]]]))
