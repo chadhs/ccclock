@@ -1,24 +1,22 @@
 (ns ccclock.core
-  (:require [reagent.core   :as reagent]
-            [re-frame.core  :as re-frame]
+  (:require [reagent.dom :as rdom]
+            [re-frame.core :as re-frame]
             [ccclock.events :as events]
-            [ccclock.views  :as views]
+            [ccclock.views.main :as views.main]
             [ccclock.config :as config]))
 
 
-(defn dev-setup []
-  (when config/debug?
-    (enable-console-print!)
-    (println "dev mode")))
+(defn dev-setup [] (when config/debug? (println "dev mode")))
 
-
-(defn mount-root []
+(defn ^:dev/after-load mount-root
+  []
   (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
-                  (.getElementById js/document "app")))
+  (let [root-el (.getElementById js/document "app")]
+    (rdom/unmount-component-at-node root-el)
+    (rdom/render [views.main/main-panel] root-el)))
 
-
-(defn ^:export init []
+(defn init
+  []
   (re-frame/dispatch-sync [::events/initialize-db])
   (dev-setup)
   (mount-root))

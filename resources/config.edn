@@ -1,0 +1,3 @@
+{:ccclock-env         #or [#env CCCLOCK_ENV "prod"]
+ :openweather-api-key #env OPENWEATHER_API_KEY
+ :port                #or [#env PORT 8000]}

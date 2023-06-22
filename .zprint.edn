@@ -1,0 +1,4 @@
+{:map {:comma? false}
+ :old? false
+ :style [:community :justified :hiccup]
+ :width 80}
