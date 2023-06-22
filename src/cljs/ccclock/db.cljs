@@ -1,6 +1,3 @@
 (ns ccclock.db)
 
-
-(def default-db
-  {:time    (js/Date.)
-   :weather {}})
+(def default-db {:time (js/Date.) :weather {}})

@@ -1,11 +1,23 @@
-.nrepl-port
-.lein*
-.rebel_readline_history
-/*.log
-/target
+/out/
+/resources/public/js/compiled/
+/target/
 /*-init.clj
-/resources/public/js/compiled
-/resources/public/css
-out
-environ.cljs
-profiles.clj
+/*.log
+/.cpcache/
+
+# Leiningen
+/.lein-*
+/.nrepl-port
+
+# Node.js dependencies
+/node_modules/
+package-lock.json
+
+# shadow-cljs cache, port files
+/.shadow-cljs/
+
+# clj-kondo cache
+/.clj-kondo/.cache
+
+# local dev
+config-dev.edn

@@ -1,0 +1,23 @@
+{:aliases {:ancient {:extra-deps #:com.github.liquidz{antq #:mvn{:version
+                                                                 "RELEASE"}}
+                     :main-opts  ["-m" "antq.core"]}
+           :build   {:deps       #:io.github.clojure{tools.build
+                                                     #:git{:sha "76b78fe"
+                                                      :tag "v0.9.4"}}
+                     :ns-default build}
+           :run     {:main-opts ["-m" "ccclock.core"]}
+           :test    {:exec-fn     cognitect.test-runner.api/test
+                     :extra-deps  #:io.github.cognitect-labs{test-runner
+                                                             #:git{:sha
+                                                                   "dfb30dd"
+                                                              :tag
+                                                                   "v0.5.1"}}
+                     :extra-paths ["test/clj"]
+                     :main-opts   ["-m" "cognitect.test-runner"]}}
+ :deps    {aero/aero                   #:mvn{:version "1.1.6"}
+           clj-http/clj-http           #:mvn{:version "3.12.3"}
+           http-kit/http-kit           #:mvn{:version "2.6.0"}
+           metosin/reitit              #:mvn{:version "0.6.0"}
+           org.clojure/clojure         #:mvn{:version "1.11.1"}
+           org.clojure/tools.namespace #:mvn{:version "1.4.4"}}
+ :paths   ["src/clj" "resources"]}

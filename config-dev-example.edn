@@ -1,0 +1,1 @@
+{:ccclock-env "dev" :openweather-api-key "YOUR_KEY_HERE" :port 8081}
