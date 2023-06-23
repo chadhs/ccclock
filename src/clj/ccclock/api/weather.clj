@@ -1,8 +1,8 @@
 (ns ccclock.api.weather
-  (:require [ccclock.config :as config])
   (:require [clj-http.client :as client]
             [slingshot.slingshot :refer [throw+ try+]] ; provided by clj-http
-  ))
+  )
+  (:require [ccclock.config :as config]))
 (defn fetch-weather
   "fetches weather data"
   []

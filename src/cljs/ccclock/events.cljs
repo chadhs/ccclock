@@ -32,6 +32,5 @@
 
 (re-frame/reg-event-db ::update-weather
                        (fn-traced [db [_ response]]
-                                  (tap> {:weather-response response})
                                   (-> db
                                       (assoc :weather response))))
