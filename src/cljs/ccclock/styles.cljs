@@ -14,7 +14,7 @@
            [:.temp-display {:width "20%" :float "left" :padding-top "0vw"}]
            [:.temp-display :.temp {:font-size "16.5vw" :padding-bottom "1vw"}]
            [:.temp-display :.hi-low {:font-size "7vw"}]
-           [:.cond-display {:font-size      "17vw"
+           [:.cond-display {:font-size      "16.5vw"
                             :text-align     "center"
                             :letter-spacing "1vw"
                             :padding-top    "6vw"
