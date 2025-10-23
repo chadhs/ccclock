@@ -1,5 +1,6 @@
 (ns build
-  (:require [clojure.tools.build.api :as build-api]))
+  (:require [clojure.tools.build.api :as build-api]
+            [clojure.java.shell :as shell]))
 
 ;; Build configuration
 (def project-config
@@ -12,11 +13,30 @@
 ;; Build tasks
 (defn clean [_] (build-api/delete {:path "target"}))
 
+(defn vendor-assets
+  "Vendor external assets (weather-icons) locally"
+  [_]
+  (println "Vendoring assets...")
+  (let [result (shell/sh "npm" "run" "vendor:weather-icons" :dir ".")]
+    (if (= 0 (:exit result))
+      (do
+        (println "Assets vendored successfully")
+        (println (:out result)))
+      (do
+        (println "Error output:" (:err result))
+        (throw (ex-info "Failed to vendor assets" {:result result}))))))
+
+(defn vendor
+  "Vendor external assets only"
+  [_]
+  (vendor-assets nil))
+
 (defn uberjar
   [_]
   (let [{:keys [class-directory main-namespace project-basis uberjar-file]}
         project-config]
     (clean nil)
+    (vendor-assets nil)
     (build-api/copy-dir {:src-dirs   ["src/clj" "resources"]
                          :target-dir class-directory})
     (build-api/compile-clj

@@ -16,8 +16,15 @@ package-lock.json
 # shadow-cljs cache, port files
 /.shadow-cljs/
 
-# clj-kondo cache
+# clj-kondo cache and other dirs
+/.clj-kondo/*/
 /.clj-kondo/.cache
+
+# Vendor assets - build artifacts
+/resources/public/vendor/
+
+# LSP
+/.lsp/
 
 # local dev
 config-dev.edn

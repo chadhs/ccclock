@@ -5,7 +5,9 @@
     "watch": "npx shadow-cljs watch app browser-test karma-test",
     "release": "npx shadow-cljs release app",
     "build-report": "npx shadow-cljs run shadow.cljs.build-report app target/build-report.html",
-    "ci": "npx shadow-cljs compile karma-test && npx karma start --single-run --reporters junit,dots"
+    "ci": "npx shadow-cljs compile karma-test && npx karma start --single-run --reporters junit,dots",
+    "vendor:weather-icons": "mkdir -p resources/public/vendor/weather-icons/css resources/public/vendor/weather-icons/font && curl -s https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css -o resources/public/vendor/weather-icons/css/weather-icons.min.css && curl -s https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/font/weathericons-regular-webfont.woff2 -o resources/public/vendor/weather-icons/font/weathericons-regular-webfont.woff2 && curl -s https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/font/weathericons-regular-webfont.woff -o resources/public/vendor/weather-icons/font/weathericons-regular-webfont.woff && curl -s https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/font/weathericons-regular-webfont.ttf -o resources/public/vendor/weather-icons/font/weathericons-regular-webfont.ttf",
+    "postinstall": "npm run vendor:weather-icons"
   },
   "dependencies": {
     "highlight.js": "11.1.0",

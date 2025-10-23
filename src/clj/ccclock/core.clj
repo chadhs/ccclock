@@ -19,8 +19,19 @@
     (@server :timeout 100)
     (reset! server nil)))
 
+(defn check-vendor-assets
+  "Check if vendor assets exist, provide helpful message if not"
+  []
+  (let [vendor-path "resources/public/vendor/weather-icons"]
+    (when-not (.exists (java.io.File. vendor-path))
+      (println "WARNING: Vendor assets not found at" vendor-path)
+      (println "Run: npm run vendor:weather-icons")
+      (println "Or use: ./dev.sh"))))
+
 (defn -main
   [& args]
+  ;; Check for vendor assets before starting
+  (check-vendor-assets)
   ;; The #' is useful when you want to hot-reload code
   ;; You may want to take a look: https://github.com/clojure/tools.namespace
   ;; and https://http-kit.github.io/migration.html#reload
