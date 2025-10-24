@@ -6,11 +6,14 @@
 (defn fetch-weather
   "fetches weather data"
   []
-  (let [apikey   (:openweather-api-key (config/config))
+  (let [config   (config/config)
+        apikey   (:openweather-api-key config)
+        lat      (or (:openweather-lat config) 42.867)
+        lon      (or (:openweather-lon config) -88.333)
         api-url  "https://api.openweathermap.org/data/3.0/onecall"
         response (try+ (client/get api-url
-                                   {:query-params {:lat   42.867
-                                                   :lon   -88.333
+                                   {:query-params {:lat   lat
+                                                   :lon   lon
                                                    :appid apikey}
                                     :headers      {"User-Agent" "CCClock/1.0"}})
                        (catch Object _
@@ -19,11 +22,11 @@
                           ;; control
                           (ex-info
                            "api connection error"
-                           {:status 500
-                            :error-message
-                            (str "We had a problem connecting to the api, "
-                                 "please try again. "
-                                 "If the issue persists,contact support.")}))))]
+                            {:status 500
+                             :error-message
+                             (str "We had a problem connecting to the api, "
+                                  "please try again. "
+                                  "If the issue persists,contact support.")}))))]
     (:body response)))
 
 (defn weather-handler

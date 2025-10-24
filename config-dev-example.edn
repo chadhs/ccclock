@@ -1,1 +1,7 @@
-{:ccclock-env "dev" :openweather-api-key "YOUR_KEY_HERE" :port 8081}
+{:ccclock-env "dev"
+ :openweather-api-key "YOUR_KEY_HERE"
+ :port 8081
+
+ ;; Weather location configuration (with environment variable override)
+ :openweather-lat #or [#env OPENWEATHER_LAT 42.867]
+ :openweather-lon #or [#env OPENWEATHER_LON -88.333]}

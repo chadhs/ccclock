@@ -1,3 +1,7 @@
 {:ccclock-env         #or [#env CCCLOCK_ENV "prod"]
  :openweather-api-key #env OPENWEATHER_API_KEY
- :port                #or [#env PORT 8000]}
+ :port                #or [#env PORT 8000]
+
+ ;; Optional weather location configuration
+ :openweather-lat     #or [#env OPENWEATHER_LAT 42.867]
+ :openweather-lon     #or [#env OPENWEATHER_LON -88.333]}
